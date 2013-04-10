@@ -98,4 +98,18 @@ modify_opts_for_export <- function(opts, directory){
 	    opts
 
 }
+
+copy_files <- function(opts, directory) {
+	#the yaml files are loaded to put the scripts and styles files into
+	# opts$template_config
+	if (exists(opts$template$config$scripts)) (
+		for(script  in opts$template$config$scipt){
+            # I will need to keep the unmodified opts. 
+			#Copy the files first and then modify the opts for rendering 
+			copy.file( a, b)
+		)
+		
+	if (exists(opts$template$config$scripts))
+	
+}
  
