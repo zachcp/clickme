@@ -76,3 +76,26 @@ get_opts <- function(ractive, params = NULL, data_name = "data", html_file_name 
 
     opts
 }
+
+
+
+modify_opts_for_export <- function(opts, directory){
+	    # folder absolute paths
+	    # PONDER: ractive is directly below the root path, maybe in the future we can allow nested paths for ractives (although, simple is better)
+		opts$path$exportdir     <- file.path(directory)
+		opts$path$exportfiledir <- file.path(opts$path$exportdir,opts$name$html_file)
+		opts$path$html_file     <- file.path(opts$path$exportdir)
+	
+	    opts$path$ractive  <- file.path(opts$path$exportfiledir , opts$name$ractive)
+	    opts$path$data     <- file.path(opts$path$exportfiledir , opts$name$data)
+	    opts$path$template <- file.path(opts$path$exportfiledir , opts$name$template)
+	    opts$path$external <- file.path(opts$path$exportfiledir , opts$name$external)
+
+	    # paths relative to opts$path$ractive
+	    opts$relative_path$data <- file.path(opts$path$exportfiledir, opts$name$data)
+	    opts$relative_path$external <- file.path(opts$path$exportfiledir, opts$name$external)
+
+	    opts
+
+}
+ 

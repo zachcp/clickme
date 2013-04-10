@@ -54,4 +54,21 @@ clickme <- function(data, ractive, browse = interactive(), ...){
     invisible(opts)
 }
 
+clickmesave <- function(data, ractive, directory = "~/Desktop"browse = interactive(), ...){
+    opts <- get_opts(ractive, ...)
+	opts$data <- validate_data_names(data, opts)
 
+	opts <- modify_opts_for_export(opts, directory=directory)
+    
+    source(opts$path$translator_file)
+    generate_visualization(opts)
+
+    if (opts$template_config$require_server){
+        message("Make sure you have a server running at: ", get_root_path())
+        message("(try running: python -m SimpleHTTPServer)")
+    }
+
+    if (browse) browseURL(opts$url)
+
+    invisible(opts)
+}
